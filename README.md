@@ -15,3 +15,20 @@ The symlinks point into the checkout, so if you move it, re-run `install.sh` fro
 - `tmux/tmux-powerline/` → `~/.config/tmux-powerline/` (config + `light` theme)
 - Plugins are declared with `set -g @plugin` and fetched by TPM into `~/.config/tmux/plugins/` (not committed). Update with `prefix + U`.
 - agenmux is a compiled tool installed separately at `~/.local/share/agenmux` (https://github.com/snirt/agenmux).
+
+## lazygit
+
+- `lazygit/config.yml` → `~/.config/lazygit/config.yml` (macOS: `~/Library/Application Support/lazygit/config.yml`, unless `XDG_CONFIG_HOME` is set)
+- Opens in a tmux popup with `prefix + g`.
+- Diff renderers: delta (default, side-by-side when wider than 160 columns), difftastic, git `--color-words`, plain git. Cycle with `|` / `\`.
+- `gui.colorScheme` is forced to `light`, because Omarchy terminals report dark even with light themes.
+
+Install lazygit and the renderers:
+
+```bash
+# Arch Linux
+sudo pacman -S lazygit git-delta difftastic
+
+# macOS
+brew install lazygit git-delta difftastic
+```

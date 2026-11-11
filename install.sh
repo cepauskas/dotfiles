@@ -23,6 +23,15 @@ link() {
 link "$DOT/tmux/tmux.conf" "$CFG/tmux/tmux.conf"
 link "$DOT/tmux/tmux-powerline" "$CFG/tmux-powerline"
 
+# lazygit (diff renderers need: git-delta difftastic)
+# On macOS lazygit ignores ~/.config unless XDG_CONFIG_HOME is set.
+if [ "$(uname)" = Darwin ] && [ -z "${XDG_CONFIG_HOME:-}" ]; then
+	LAZYGIT_CFG="$HOME/Library/Application Support/lazygit"
+else
+	LAZYGIT_CFG="$CFG/lazygit"
+fi
+link "$DOT/lazygit/config.yml" "$LAZYGIT_CFG/config.yml"
+
 if [ ! -d "$CFG/tmux/plugins/tpm" ]; then
 	git clone --depth 1 https://github.com/tmux-plugins/tpm "$CFG/tmux/plugins/tpm"
 fi

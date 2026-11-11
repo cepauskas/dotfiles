@@ -1,0 +1,18 @@
+gui:
+  # Omarchy themes put light colours under foot's [colors-dark], so the terminal
+  # reports dark; force light so renderers using {{colorScheme}} match.
+  colorScheme: light
+
+git:
+  # Cycle with | (and \ backwards). The first entry is the default.
+  diffRenderers:
+    - name: delta
+      command: delta --{{colorScheme}} --paging=never {{if gt .width 160}}--side-by-side --width={{width}}{{end}}
+    - name: difftastic
+      type: extDiff
+      command: difft --color=always --background={{colorScheme}} --context={{diffContext}}
+    - name: color-words
+      type: rawGit
+      args: [--color-words]
+    - name: git
+      type: rawGit
