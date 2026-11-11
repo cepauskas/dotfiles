@@ -26,7 +26,13 @@ link "$DOT/tmux/tmux-powerline" "$CFG/tmux-powerline"
 if [ ! -d "$CFG/tmux/plugins/tpm" ]; then
 	git clone --depth 1 https://github.com/tmux-plugins/tpm "$CFG/tmux/plugins/tpm"
 fi
-"$CFG/tmux/plugins/tpm/bin/install_plugins"
+# TPM's installer needs the config loaded in a running server.
+if tmux has-session 2>/dev/null; then
+	tmux source-file "$CFG/tmux/tmux.conf"
+	"$CFG/tmux/plugins/tpm/bin/install_plugins"
+else
+	echo "start tmux and press prefix + I to install plugins"
+fi
 
 if [ ! -d "$HOME/.local/share/agenmux" ]; then
 	echo "note: agenmux not installed; see https://github.com/snirt/agenmux (expected at ~/.local/share/agenmux)"
