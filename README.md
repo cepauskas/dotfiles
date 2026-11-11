@@ -1,11 +1,13 @@
 # dotfiles
 
 ```bash
-git clone <this repo> ~/Pro/dotfiles
-~/Pro/dotfiles/install.sh
+git clone git@github.com:cepauskas/dotfiles.git <any-dir>
+<any-dir>/install.sh
 ```
 
-`install.sh` symlinks configs into `~/.config` (moving existing files aside as `.bak-<timestamp>`), installs TPM and the plugins declared in `tmux/tmux.conf`.
+The checkout can live anywhere. `install.sh` symlinks configs from wherever it sits into `~/.config` (moving existing files aside as `.bak-<timestamp>`), then installs TPM and the plugins declared in `tmux/tmux.conf`.
+
+The symlinks point into the checkout, so if you move it, re-run `install.sh` from the new location.
 
 ## tmux
 
